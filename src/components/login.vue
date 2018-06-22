@@ -1,33 +1,36 @@
 <template>
-<div class="row">
-  <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
-    <div class="row">
-      <div class="col-xs-8 col-sm-8 col-lg-8 col-md-8 design">
-        <h1>Log on to website</h1>
-      </div>
-      <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4 log">
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
-            <img  src="../assets/login2.jpg" height="110px" width="100px">
-          </div>
+<div class="main">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+      <div class="row">
+        <div class="col-xs-8 col-sm-8 col-lg-8 col-md-8 design">
+          <h1>Log on to website</h1>
         </div>
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
-            <label for="email">Enter Your Email</label>
-            <input type="email" name="email" placeholder="" id="email" value="" required v-model="email">
+        <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4 log">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+              <img  src="../assets/login2.jpg" height="110px" width="100px">
+            </div>
           </div>
-        </div>
-        <br>
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
-            <label for="password">Enter Your Password</label>
-            <input type="password" name="password" placeholder="" id="password" value="" required v-model="password">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+              <label for="email">Enter Your Email</label>
+              <input type="email" name="email" placeholder="" id="email" value="" required v-model="email">
+            </div>
           </div>
-        </div>
-        <br>
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
-            <div class="btn-medium" v-on:click="logins()">LOGIN</div>
+          <br>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+              <label for="password">Enter Your Password</label>
+              <input type="password" name="password" placeholder="" id="password" value="" required v-model="password">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+              <div class="btn-medium" v-on:click="logins()">LOGIN</div>
+
+            </div>
           </div>
         </div>
       </div>
@@ -45,12 +48,12 @@ export default {
   },
   methods: {
     logins: function () {
-      alert('hai')
+      // alert('hai')
       let logEmail = this.email
-      alert(logEmail)
+      // alert(logEmail)
       let logPass = this.password
       let stEmail = this.$localStorage.get('email')
-      alert(stEmail)
+      // alert(stEmail)
       let stPass = this.$localStorage.get('pass')
       if (logEmail === stEmail && logPass === stPass) {
         alert('login sucessfully')
@@ -65,8 +68,8 @@ export default {
 }
 </script>
 <style>
-body {
-  background-image: url("");
+.main {
+  background-image: url("../assets/22.jpeg");
   background-repeat: no-repeat;
   background-color: #fff;
   margin-top: -1%;
@@ -145,7 +148,7 @@ input, text {
   border-radius: 1em;
   margin-right: 5%;
   box-shadow: 0 4px 20px 0 rgba(0,0,0,0.2);
-  margin-top: -1%;
+  margin-top: -8%;
 }
 
 .log:hover {
@@ -181,10 +184,10 @@ label {
   width: 92%;
 }
 
-.design {
+.design h1 {
   font-family: 'Orbitron', sans-serif;
   color: #fff;
-  margin-top: 13%;
-  margin-left: 30px;
+  margin-top: -13%;
+  margin-left: 20px;
 }
 </style>

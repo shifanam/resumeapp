@@ -1,63 +1,43 @@
 <template>
-<div class="row">
-  <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
-    <div class="row">
-      <div class="col-xs-8 col-sm-8 col-lg-8 col-md-8 design">
-        <h1>Design Your Self</h1>
-        <img src="../assets/text3.jpeg">
-      </div>
-      <div class="col-xs-4 col-sm-4 col-lg-4 col-md-4 sign">
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
-            <img  src="../assets/signup.jpg" height="80px" width="100px"/>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
-            <label for="email">Enter Email</label>
-            <input type="email" name="email" id="email" placeholder="example@gmail.com" v-model="email" required>
-          </div>
-        </div>
-        <br>
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
-            <label for="password">Enter Password</label>
-            <input type="password" name="password" id="password" placeholder="password" value="" v-model="password" required>
-          </div>
-        </div>
-        <br>
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+<div class="main">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+      <div class="row">
+        <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6 card">
+          <div class="card1">
             <div class="row">
-              <div class="col-xs-2 col-sm-2 col-lg-2 col-md-2">
-                <label class="check">
-                  <input type="checkbox" id="checkbox"  v-on:click="myFunction()" checked="checked" name=check1 v-model="checkbox">
-                  <span class="checkmark"></span>
-                </label>
+              <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                <label for="name">Enter Your Name</label>
+                <input type="text" name="name" placeholder="" id="name" value="" required v-model="name">{{name}}
               </div>
-              <div class="col-xs-10 col-sm-10 col-lg-10 col-md-10">
-                <div class="show">
-                  show password
-                </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                <label for="email">Enter Your Email</label>
+                <input type="email" name="email" placeholder="" id="email" value="" required v-model="email">{{email}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                <label for="phone">Enter Your Phone</label>
+                <input type="phone" name="phone" placeholder="" id="phone" value="" required v-model="phone">{{phone}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                <label for="address">Enter Your Address</label>
+                <input type="textarea" name="address" placeholder="" id="address" value="" required v-model="address">{{address}}
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                <div class="btn-medium" v-on:click="add_Details()">SAVE</div>
               </div>
             </div>
           </div>
         </div>
-        <br><br>
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
-            <div class="btn-medium" v-on:click="form_validation()">SIGNUP</div>
-          </div>
-        </div>
-        <br>
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
-            <div class="lo">
-              <i>click here to</i>
-                <a v-bind:href="url">Login</a>
-            </div>
-          </div>
-        </div>
+        <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6"></div>
       </div>
     </div>
   </div>
@@ -67,28 +47,22 @@
 export default {
   data () {
     return {
-      password: '',
+      name: '',
       email: '',
-      checkbox: '',
-      url: 'http://localhost:8080/#/login'
+      phone: '',
+      address: ''
     }
   },
   methods: {
-    myFunction: function () {
-      var x = document.getElementById('password')
-      if (x.type === 'password') {
-        x.type = 'text'
-      } else {
-        x.type = 'password'
-      }
-    },
-    form_validation: function () {
+    add_Details: function () {
+      var name = this.name
+      var address = this.address
       var email = this.email
-      var password = this.password
+      var phone = this.phone
       this.emailVal(email)
-      this.passVal(password)
-      this.testValidation(email, password)
-      this.store(email, password)
+      this.phoneVal(phone)
+      this.store(name, email, phone, address)
+      this.resume()
     },
     emailVal: function (email) {
       var mailformat = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm
@@ -99,107 +73,87 @@ export default {
         return false
       }
     },
-    passVal: function (password) {
-      let passformat = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/
-      if (password.match(passformat)) {
+    phoneVal: function (phone) {
+      let phoneformat = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
+      if (phone.match(phoneformat)) {
         return true
       } else {
-        alert('Password should contain :atleast 1 alphabet,digit,special character and total 8-16 characters!..')
+        alert('Phone must contains  :10 numbers!..')
         return false
       }
     },
-    store: function (email, password) {
+    store: function (name, email, phone, address) {
+      this.$localStorage.set('name', name)
       this.$localStorage.set('email', email)
-      this.$localStorage.set('pass', password)
+      this.$localStorage.set('phone', phone)
+      this.$localStorage.set('address', address)
     },
-    testValidation: function (email, password) {
-      if (this.emailVal(email) === true && this.passVal(password) === true) {
-        this.$router.push({path: '/login'})
+    resume: function () {
+      let stName = this.$localStorage.get('name')
+      // alert(stName)
+      let stEmail = this.$localStorage.get('email')
+      // alert(stEmail)
+      let stPhone = this.$localStorage.get('phone')
+      // alert(stPhone)
+      let stAddress = this.$localStorage.get('address')
+      // alert(stAddress)
+      if (stName && stEmail && stPhone && stAddress) {
+        alert('add details success')
+        this.$router.push({path: '/resume'})
+        return true
+      } else {
+        alert('must fill all the fields')
+        return false
       }
     }
   }
 }
 </script>
+
 <style>
-body {
-  background-image: url("../assets/bgs.jpeg");
+.main {
+  background-image: url("");
   background-repeat: no-repeat;
   background-color: #fff;
   margin-top: -1%;
   margin-left: -1%;
   width:100%;
   margin-bottom: 0;
-  text-decoration: none;
   background-attachment: fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
 }
-
-.nave-bar {
-  background-color:none;
-  display: block;
-  height: 30px;
-  width: 100%;
-  text-decoration: none;
-}
-
-ul, li {
-  list-style: none;
-  display: block;
-  overflow: hidden;
-  margin: 0;
-  padding-left: 12px;
-  padding-top: 18px;
-  float: left;
-  top: 0;
-  color: #fff;
-  cursor: pointer;
-}
-
-a {
-  text-decoration: none;
-}
-
-.s {
-  width:1em;
-  height:2em;
-
-}
-.sign {
-  width: 30%;
-  height:100%;
-  border:0px solid #000;
-  background-image: url("../assets/bots.jpeg");
-  background-color: #fff;
-  padding-left: 5%;
-  padding-top: 5%;
-  padding-bottom: 5%;
-  float: right;
-  font: 1em sans-serif;
+.card {
+  background-color: blue;
   border-radius: 1em;
-  margin-right: 5%;
   box-shadow: 0 4px 20px 0 rgba(0,0,0,0.2);
-  margin-top: -18%;
+  margin-left: 10%;
 }
-.sign:hover {
-  box-shadow: 0 8px 22px 0 rgba(0,0,0,0.2);
+.card1 {
+  background-color: aquamarine;
+  border-radius: 1em;
+  box-shadow: 0 4px 20px 0 rgba(0,0,0,0.2);
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 6%;
+  padding-bottom: 6%;
 }
-
 input, text {
   font-size: 1em;
   display: block;
-  width: 80%;
+  width: 93%;
   padding:1em 1em 1em 0;
   background: none;
   background-image: none;
   border: none;
   border-bottom: 1px solid #8e8e8e;
   color: #000;
-  text-align:left;
   border-radius: 0;
+  -webkit-transition: border-color .25s ease, box-shadow .25s ease;
+  -moz-transition: border-color .25s ease, box-shadow .25s ease;
+  transition: border-color .25s ease, box-shadow .25s ease;
 }
-
 .btn-medium {
   background-color:#2196f3;
   font-size: 14px;
@@ -222,120 +176,6 @@ input, text {
 
 .btn-medium {
   display: block;
-  width: 80%;
-}
-
-.check {
-  display: block;
-  position: relative;
-  padding-left: 25px;
-  padding-bottom: 12px;
-  border:0px solid #000;
-  cursor: pointer;
-  font-size: 15px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.check input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-}
-
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 20px;
-  width: 20px;
-  border: solid #2196f3;
-  background-color: #eee;
-}
-
-.check:hover input ~ .checkmark {
-  background-color: #aaa;
-}
-
-.check input:checked ~ .checkmark {
-  background-color: #fff;
-}
-
-.checkmark:after {
-  border: solid #122636;
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-.check input:checked ~ .checkmark:after {
-  display: block;
-}
-
-.check .checkmark:after {
-  left:6px;
-  top: 3px;
-  width: 4px;
-  height: 8px;
-  border:solid #2196f3;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-.show {
-  margin-top: -1px;
-  margin-left: -30px;
-  float: left;
-}
-
-img {
-  float: center;
-  margin-left: -21%;
-}
-
-label {
-  float: left;
-}
-
-.lo {
-  color:#aaa;
-  margin-top: -0.5px;
-  margin-left: -30px;
-  font-size: 0.8em;
-}
-
-.lo  a {
-  color:rgb(221, 10, 10);
-  font-size: 0.9em;
-  text-decoration: none;
-}
-
-.design {
-  font: 3em sans-serif;
-  font-family: 3em 'Open Sans', sans-serif;
-  color: #fff;
-  margin-top: 13%;
-  margin-left: 30px;
-}
-
-@media (min-width: 320px) and (max-width: 480px) {
-body {
-  background-image: url("../assets/bgs.jpeg");
-  background-repeat: no-repeat;
-  background-color: #fff;
-  margin-top: -1%;
-  margin-left: -1%;
-  width:100%;
-  margin-bottom: 0;
-  text-decoration: none;
-  background-attachment: fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-}
+  width: 92%;
 }
 </style>
