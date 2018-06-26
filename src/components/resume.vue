@@ -5,28 +5,37 @@
       <div class="row">
         <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6 card">
           <h1>Design your resume</h1>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+              <img  src="../assets/resume.png" height="80px" width="100px"/>
+            </div>
+          </div>
           <div id="app" class="card1" v-bind:style="{ backgroundColor: color}">
+            <h3>Resume</h3>
             <div class="row">
               <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
-                <label for="name">Name</label>
+                <label for="name">Name :</label>
                 <input type="text" name="name" placeholder="" id="name" value="name" required v-model="name">
               </div>
             </div>
+            <br>
             <div class="row">
               <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
-                <label for="email">Email</label>
+                <label for="email">Email :</label>
                 <input type="email" name="email" placeholder="" id="email" value="email" required v-model="email">
               </div>
             </div>
+            <br>
             <div class="row">
               <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
-                <label for="phone">Phone</label>
+                <label for="phone">Phone :</label>
                 <input type="phone" name="phone" placeholder="" id="phone" value="phone" required v-model="phone">
               </div>
             </div>
+            <br>
             <div class="row">
               <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
-                <label for="address">Address</label>
+                <label for="address">Address :</label>
                 <input type="textarea" name="address" placeholder="" id="address" value="address" required v-model="address">
               </div>
             </div>
@@ -53,7 +62,7 @@ export default {
       email: this.$localStorage.get('email'),
       phone: this.$localStorage.get('phone'),
       address: this.$localStorage.get('address'),
-      color: '#3AB79A'
+      color: '#F0EDF6'
     }
   }
 }
@@ -67,18 +76,33 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
 #app input {
-  padding: 1rem 1rem;
+  padding: 1em 1em;
   font-size: 2rem;
   border: 0;
   border-radius: 3px;
-  background: #fff;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #8e8e8e;
+  color: #000;
+  border-radius: 0;
+  -webkit-transition: border-color .25s ease, box-shadow .25s ease;
+  -moz-transition: border-color .25s ease, box-shadow .25s ease;
+  transition: border-color .25s ease, box-shadow .25s ease;
 }
 
 .color label {
   margin-left: 300px;
   margin-top: 60px;
+}
+
+.cards {
+  margin-left: 10%;
+  margin-top: -25%;
+  float: right;
 }
 
 h1 {
@@ -110,19 +134,22 @@ input[type="color"]{
   background-size: cover;
 }
 .card {
-  background-color: #8e8e8e;
+  background-color: #2196f3;
   border-radius: 1em;
   box-shadow: 0 4px 20px 0 rgba(0,0,0,0.2);
-  margin-left: 10%;
+  margin-left: 5%;
 }
 .card1 {
   background-color: aquamarine;
   border-radius: 1em;
   box-shadow: 0 4px 20px 0 rgba(0,0,0,0.2);
-  padding-left: 5%;
-  padding-right: 5%;
-  padding-top: 6%;
-  padding-bottom: 6%;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+.card1 label {
+  float: left;
 }
 input, text {
   font-size: 1em;

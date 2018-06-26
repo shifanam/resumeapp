@@ -12,17 +12,17 @@
                   <img src="../assets/jl.jpg" height="70px" width="100px"/>
                   </li>
                   <li>
-                    <a href="landing.html">
+                    <a href="#">
                       <div class="btn-medium" onclick="">HOME</div>
                     </a>
                   </li>
                   <li>
-                    <a href=''>
+                    <a href='#'>
                       <div class="btn-medium" v-on:click="resume()">RESUME</div>
                     </a>
                   </li>
                   <li>
-                    <a href=''>
+                    <a v-bind:href="url">
                       <div class="btn-medium" onclick="">PROFILE</div>
                     </a>
                   </li>
@@ -52,22 +52,7 @@
 export default {
   data () {
     return {
-      name: '',
-      email: '',
-      phone: '',
-      address: ''
-    }
-  },
-  methods: {
-    resume: function () {
-      let stName = this.$localStorage.get('name')
-      console.log(stName)
-      let stEmail = this.$localStorage.get('email')
-      console.log(stEmail)
-      let stPhone = this.$localStorage.get('phone')
-      console.log(stPhone)
-      let stAddress = this.$localStorage.get('address')
-      console.log(stAddress)
+      url: 'http://localhost:8107/#/demo'
     }
   }
 }

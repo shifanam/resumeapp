@@ -3,8 +3,17 @@
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
       <div class="row">
+        <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6 car">
+          <h1>Enter Your Details</h1>
+        </div>
         <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6 card">
           <div class="card1">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                <img  src="../assets/reg2.png" height="80px" width="100px"/>
+              </div>
+            </div>
+            <br>
             <div class="row">
               <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
                 <label for="name">Enter Your Name</label>
@@ -37,7 +46,6 @@
             </div>
           </div>
         </div>
-        <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6"></div>
       </div>
     </div>
   </div>
@@ -112,9 +120,8 @@ export default {
 
 <style>
 .main {
-  background-image: url("");
-  background-repeat: no-repeat;
-  background-color: #fff;
+  background-image: url("../assets/dem.png");
+  background-repeat: repeat;
   margin-top: -1%;
   margin-left: -1%;
   width:100%;
@@ -125,19 +132,25 @@ export default {
   background-size: cover;
 }
 .card {
-  background-color: blue;
+  background-color: #2196f3;
   border-radius: 1em;
   box-shadow: 0 4px 20px 0 rgba(0,0,0,0.2);
   margin-left: 10%;
+  margin-top: -5%;
+}
+img {
+  margin-left: -8%;
 }
 .card1 {
-  background-color: aquamarine;
+  background-color: #fff;
   border-radius: 1em;
   box-shadow: 0 4px 20px 0 rgba(0,0,0,0.2);
   padding-left: 5%;
   padding-right: 5%;
   padding-top: 6%;
   padding-bottom: 6%;
+  margin-top: 3%;
+  margin-bottom: 3%;
 }
 input, text {
   font-size: 1em;
@@ -177,5 +190,8 @@ input, text {
 .btn-medium {
   display: block;
   width: 92%;
+}
+.car h1 {
+  color: #fff;
 }
 </style>
